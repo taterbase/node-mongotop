@@ -1,0 +1,25 @@
+{
+  "name": "mongotop",
+  "version": "0.0.0",
+  "description": "A simple interface to mongotop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/taterbase/node-mongotop.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "mongotop",
+    "top"
+  ],
+  "author": "taterbase",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taterbase/node-mongotop/issues"
+  },
+  "homepage": "https://github.com/taterbase/node-mongotop"
+}
