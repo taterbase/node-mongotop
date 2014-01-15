@@ -3,25 +3,27 @@ var spawn  = require('child_process').spawn
   , child
 
 
-module.exports = function mongotop (uri, opts) {
-  uri  = uri  || ''
+module.exports = function mongotop (opts) {
   opts = opts || {}
 
-  if(!uri && !opts.host)
-    opts.host = '127.0.0.1'
+  opts.host = opts.host || '127.0.0.1'
 
-  if(!opts.port && (!!opts.host && !opts.host.match(':')) && !uri.match(':'))
+  if(!opts.port && !opts.host.match(':'))
     opts.port = '27017'
 
   var args = []
-    , mstream = new stream()
+    , locks = false
 
   Object.keys(opts).forEach(function(key) {
+    if (key === 'locks') {
+      locks = opts[key]
+      return args = args.concat('--locks')
+    }
+
     args = args.concat(['--' + key, '' + opts[key]])
   })
 
-  if(!!uri)
-    args.push(uri)
+  var mstream = new stream({locks: locks})
 
   child = spawn('mongotop', args)
   child.stdout.setEncoding('utf8')
